@@ -14,6 +14,17 @@ class CategoriaCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('categoria_list')
     template_name = 'form.html'
 
+class CategoriaUpdateView(LoginRequiredMixin, UpdateView):
+    model = Categoria
+    fields = ['nome']
+    template_name = 'form.html'
+    success_url = reverse_lazy('categoria_list')
+
+class CategoriaDeleteView(LoginRequiredMixin, DeleteView):
+    model = Categoria
+    template_name = 'confirm_delcategoria.html'
+    success_url = reverse_lazy('categoria_list')
+
 # Mesma lógica para Produto
 class ProdutoListView(LoginRequiredMixin, ListView):
     model = Produto
@@ -25,10 +36,20 @@ class ProdutoCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('produto_list')
     template_name = 'form.html'
 
-  
+class ProdutoUpdateView(LoginRequiredMixin, UpdateView):
+    model = Produto
+    fields = ['nome', 'preco', 'categoria']
+    template_name = 'form.html'
+    success_url = reverse_lazy('produto_list')
+
+class ProdutoDeleteView(LoginRequiredMixin, DeleteView):
+    model = Produto
+    template_name = 'confirm_delete.html'
+    success_url = reverse_lazy('produto_list')  
 
 class LoginUsuarioView(LoginView):
     template_name = 'login.html'
 
 class LogoutUsuarioView(LogoutView):
     next_page = reverse_lazy('login')
+

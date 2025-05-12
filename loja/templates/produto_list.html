@@ -7,6 +7,7 @@
   <thead>
     <tr>
       <th>#</th>
+      <th>Ações</th>
       <th>Nome</th>
       <th>Preço</th>
       <th>Categoria</th>
@@ -16,6 +17,11 @@
     {% for produto in object_list %}
       <tr>
         <td>{{ forloop.counter }}</td>
+        <td>
+            <a href="{%url 'produto_update' produto.id%}">Editar</a>
+        </br>
+            <a href="{%url 'produto_delete' produto.id%}">Deletar</a>
+        </td>
         <td>{{ produto.nome }}</td>
         <td>R$ {{ produto.preco }}</td>
         <td>{{ produto.categoria.nome }}</td>
